@@ -4,11 +4,13 @@ import numpy as np
 from keras.models import Sequential
 from keras.layers import Flatten, Dense, Lambda, Convolution2D, MaxPooling2D, Cropping2D
 from keras.backend import tf as ktf
+from keras.models import Model
 
 csv_file = './new_recordings/driving_log.csv';
 
 def imageLoading():
 	lines = []
+
 	with open(csv_file) as csvfile:
 		reader = csv.reader(csvfile)
 		
@@ -46,23 +48,14 @@ def augmentData(images, measurements):
 		augmented_measurements.append(measurement * -1.0)
 		
 	return augmented_images, augmented_measurements
-	
-def basicTraining():
-	model = Sequential()
-	model.add(Lambda(lambda x: ktf.image.resize_images(x, (32,32))))
-	model.add(Lambda(lambda x:x / 255.0 - 0.5, input_shape=(32,32,3)))
-	model.add(Flatten())
-	model.add(Dense(1))
 
-	model.compile(loss='mse', optimizer='adam')
-	model.fit(X_train, y_train, validation_split=0.2, shuffle=True, nb_epoch=2)
-
-	model.save('model_own.h5')
 	
+## LeNet model
 def leNet():
 	model = Sequential()
 	model.add(Lambda(lambda x:x / 255.0 - 0.5, input_shape=(160,320,3)))
 	model.add(Lambda(converter))
+	
 	model.add(Cropping2D(cropping=((70,25), (0,0))))
 	# Layer 1: Convolutional. Input = 32x32x1. Output = 28x28x6.
 	model.add(Convolution2D(6,5,5,activation="relu"))
@@ -93,10 +86,12 @@ def leNet():
 
 	model.save('model_leNet.h5')
 	exit()
-	
+
+## NVIDIA Model	
 def nvidia():
 	model = Sequential()
 	model.add(Lambda(lambda x:x / 255.0 - 0.5, input_shape=(160,320,3)))
+	
 	model.add(Lambda(converter))
 	model.add(Cropping2D(cropping=((70,25), (0,0))))
 	
@@ -135,9 +130,10 @@ def nvidia():
 
 	model.save('model_nvidia.h5')
 	exit()
-	
-def converter(x):
+	#return model
 
+## convert the image to grayscale	
+def converter(x):
     #x has shape (batch, width, height, channels)
     return (0.21 * x[:,:,:,:1]) + (0.72 * x[:,:,:,1:2]) + (0.07 * x[:,:,:,-1:])
 
@@ -149,4 +145,16 @@ y_train = np.array(augmented_measurements)
 
 #leNet();
 
-nvidia();
+nvidia()
+
+
+################################################################
+#model = nvidia();
+
+
+#print(model.summary()) ## print the model summary
+
+## save images containing intermediary outputs of treatment layers
+#predictions = model.predict(X_train)
+#for i in range(len(predictions)):
+#	cv2.imwrite('./treatments/imgCenterCropped'+str(i)+'.jpg', predictions[i]*255)
