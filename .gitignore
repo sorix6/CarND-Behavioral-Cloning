@@ -1,2 +1,7 @@
 # Build folder and log file
 windows-sim/
+data/
+examples/
+recordings/
+new_recordings/
+run1/
