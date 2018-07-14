@@ -53,6 +53,6 @@ The collection of data has been done through manual driving on the first circuit
 * 1 lap of focusing on recovering (only recording the return from the side of the road towards the center)
 
 
-###Results
+### Results
 
 As seen in the video run1.mp4, the car is able to complete the full circuit without going off the driveable portion of the road.
