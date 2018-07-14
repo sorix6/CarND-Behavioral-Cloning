@@ -19,15 +19,17 @@ The file was also used to print the training and validation loss metrics
 
 ### Model Architecture and Training Strategy
 
-[Model architecture]: https://raw.githubusercontent.com/sorix6/CarND-Behavioral-Cloning/master/img/model.jpg
+![Model architecture](https://raw.githubusercontent.com/sorix6/CarND-Behavioral-Cloning/master/img/model.jpg)
 
 After setting up and testing both the LeNet and the NVIDIA architecture, I have concluded that the second one is a better choice for this project.
+
 No dropout layers have been added to the model since I did not feel as it was overfitting.
-The number of EPOCHs has been set to 5. as seen in the picture below, the validation loss decreases for every epoch.
 
-https://raw.githubusercontent.com/sorix6/CarND-Behavioral-Cloning/master/img/loss.jpg
+The number of EPOCHs has been set to 5. As seen in the picture below, the validation loss decreases for every epoch.
 
-https://raw.githubusercontent.com/sorix6/CarND-Behavioral-Cloning/master/img/graph.jpg
+![Training and Validation metrics](https://raw.githubusercontent.com/sorix6/CarND-Behavioral-Cloning/master/img/loss.jpg)
+
+![Training and Validation metrics](https://raw.githubusercontent.com/sorix6/CarND-Behavioral-Cloning/master/img/graph.jpg)
 
 The model uses an Adam optimizer.
 
@@ -36,10 +38,10 @@ The only changes that have been applied to the architecture are the addition of 
 * model.add(Lambda(converter)) - calling a converter method that converts an image to grayscale
 * model.add(Cropping2D(cropping=((70,25), (0,0)))) - image cropping to remove irrelevant top and bottom parts
 
-[Original image]: https://raw.githubusercontent.com/sorix6/CarND-Behavioral-Cloning/master/img/imgCenter1-0.jpg "Original"
-[After normalization]: https://raw.githubusercontent.com/sorix6/CarND-Behavioral-Cloning/master/img/imgCenterNormalized0.jpg "After normalization"
-[After grayscaling]: https://raw.githubusercontent.com/sorix6/CarND-Behavioral-Cloning/master/img/imgCenterGrayscale0.jpg "After grayscaling"
-[After cropping]: https://raw.githubusercontent.com/sorix6/CarND-Behavioral-Cloning/master/img/imgCenterCropped0.jpg "After cropping"
+![Original image](https://raw.githubusercontent.com/sorix6/CarND-Behavioral-Cloning/master/img/imgCenter1-0.jpg)
+![After normalization](https://raw.githubusercontent.com/sorix6/CarND-Behavioral-Cloning/master/img/imgCenterNormalized0.jpg)
+![After grayscaling](https://raw.githubusercontent.com/sorix6/CarND-Behavioral-Cloning/master/img/imgCenterGrayscale0.jpg)
+![After cropping](https://raw.githubusercontent.com/sorix6/CarND-Behavioral-Cloning/master/img/imgCenterCropped0.jpg)
 
 
 ###Training data
