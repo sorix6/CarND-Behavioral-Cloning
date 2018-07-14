@@ -56,3 +56,7 @@ The collection of data has been done through manual driving on the first circuit
 ### Results
 
 As seen in the video run1.mp4, the car is able to complete the full circuit without going off the driveable portion of the road.
+
+### Future upgrades
+
+Improvements could be made by training the model on the second circuit as well.
