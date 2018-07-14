@@ -44,7 +44,7 @@ The only changes that have been applied to the architecture are the addition of 
 ![After cropping](https://raw.githubusercontent.com/sorix6/CarND-Behavioral-Cloning/master/img/imgCenterCropped0.jpg)
 
 
-###Training data
+### Training data
 
 The collection of data has been done through manual driving on the first circuit as follows:
 * 2 laps of normal, center focused driving
